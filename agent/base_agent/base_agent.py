@@ -40,12 +40,24 @@ class DeepSeekChatOpenAI(ChatOpenAI):
     """
     Custom ChatOpenAI wrapper for DeepSeek API compatibility.
     Handles the case where DeepSeek returns tool_calls.args as JSON strings instead of dicts.
+    Also normalizes message content from list format to string format for DeepSeek API.
     """
 
-    def _create_message_dicts(self, messages: list, stop: Optional[list] = None) -> list:
-        """Override to handle response parsing"""
-        message_dicts = super()._create_message_dicts(messages, stop)
-        return message_dicts
+    def _get_request_payload(self, input_, *, stop=None, **kwargs):
+        """Override to normalize content fields for DeepSeek API compatibility.
+        DeepSeek API expects content as a string, not a list of content blocks."""
+        payload = super()._get_request_payload(input_, stop=stop, **kwargs)
+        if "messages" in payload:
+            for msg in payload["messages"]:
+                if isinstance(msg.get("content"), list):
+                    parts = []
+                    for block in msg["content"]:
+                        if isinstance(block, dict) and "text" in block:
+                            parts.append(block["text"])
+                        elif isinstance(block, str):
+                            parts.append(block)
+                    msg["content"] = "\n".join(parts) if parts else ""
+        return payload
 
     def _generate(self, messages: list, stop: Optional[list] = None, **kwargs):
         """Override generation to fix tool_calls format in responses"""

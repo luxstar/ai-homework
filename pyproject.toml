@@ -1,0 +1,14 @@
+[project]
+name = "ai-trader"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "efinance>=0.5.5.2",
+    "fastmcp==2.12.5",
+    "langchain==1.0.2",
+    "langchain-mcp-adapters>=0.1.0",
+    "langchain-openai==1.0.1",
+    "tushare>=1.4.24",
+]

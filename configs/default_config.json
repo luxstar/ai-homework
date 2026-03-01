@@ -18,7 +18,7 @@
       "name": "deepseek-chat-v3.1",
       "basemodel": "deepseek/deepseek-chat-v3.1",
       "signature": "deepseek-chat-v3.1",
-      "enabled": false
+      "enabled": true
     },
     {
       "name": "qwen3-max",
@@ -36,7 +36,7 @@
       "name": "gpt-5",
       "basemodel": "openai/gpt-5",
       "signature": "gpt-5",
-      "enabled": true
+      "enabled": false
     }
   ],
   "agent_config": {
