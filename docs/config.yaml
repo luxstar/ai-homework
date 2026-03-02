@@ -40,6 +40,14 @@ markets:
         display_name: "MiniMax M2"
         icon: "./figs/minimax.svg"
         color: "#3a86ff"
+      - folder: "my-deepseek"
+        display_name: "My DeepSeek (steps=30)"
+        icon: "./figs/deepseek.svg"
+        color: "#ff4488"
+      - folder: "my-deepseek-steps10"
+        display_name: "My DeepSeek (steps=10)"
+        icon: "./figs/deepseek.svg"
+        color: "#ff8844"
 
   cn:
     name: "A-Shares (SSE 50)"
